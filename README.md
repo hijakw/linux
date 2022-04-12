@@ -1,2 +1,2 @@
 # linux
-my linux configs
+My Linux Configs for Arch btw using I3 WM
