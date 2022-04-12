@@ -1,24 +1,20 @@
-#########################################################
-# ____    ____  ____  _        ___  __ __      __    __ #
-#|    \  /    ||    || |      /  _]|  |  |    |  |__|  |#
-#|  o  )|  o  | |  | | |     /  [_ |  |  |    |  |  |  |#
-#|     ||     | |  | | |___ |    _]|  ~  |    |  |  |  |#
-#|  O  ||  _  | |  | |     ||   [_ |___, |    |  `  '  |#
-#|     ||  |  | |  | |     ||     ||     |     \      / #
-#|_____||__|__||____||_____||_____||____/       \_/\_/  #
-#########################################################
+     ________  ___       __
+#     |\   __  \|\  \     |\  \
+#     \ \  \|\ /\ \  \    \ \  \
+#      \ \   __  \ \  \  __\ \  \
+#       \ \  \|\  \ \  \|\__\_\  \
+#        \ \_______\ \____________\
+#         \|_______|\|____________|
+#
 
-# Personal Config File for i3 Linux
-# CC 2021.
-# https://github.com/joopitr/linux/blob/main/i3config                                           
+#bw i3 conf 2022
 
 
 
 
 
-###########################
-#         defaults        #
-###########################
+
+
 
 set $mod Mod4
 
@@ -41,7 +37,7 @@ exec --no-startup-id dex --autostart --environment i3
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-# NetworkManager is the most popular way to manage wireless networks on Linux,
+# NetworkManager is the most popular way to manage wireless networks on Linux
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
@@ -58,13 +54,14 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec alacritty
 
+
 # kill focused window
 bindsym $mod+q kill
 
 # start dmenu (a program launcher)
-#bindsym $mod+p exec --no-startup-id dmenu_run
+#bindsym $mod+d exec --no-startup-id dmenu_run
 # A more modern dmenu replacement is rofi:
-# bindcode $mod+40 exec "rofi -modi drun,run -show drun"
+bindsym $mod+d exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
@@ -80,7 +77,6 @@ bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
-
 # move focused window
 bindsym $mod+Shift+j move left
 bindsym $mod+Shift+k move down
@@ -190,45 +186,24 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Since polybar is installed, there is no need for i3 status atm.
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-#bar {
-#        status_command i3status
-#}
+#Launch Polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 
+########
+# gaps #
+########
 
-
-
-
-#############################
-#          settings         #
-#############################
-
-#gaps
-gaps inner 10
-gaps outer 5
-
-#firefox
-bindsym $mod+b exec firefox
-
-#remove title/borders on windows
+gaps inner 20
+gaps outer 15
 default_border pixel 0
 default_floating_border pixel 0
 
+#launchers
+bindsym $mod+b exec firefox
+
 #wallpaper
-exec_always feh --bg-fill /home/juno/Pictures/Walls/01.png
+exec_always feh --bg-fill $HOME/Pictures/Walls/6.jpg
 
-#launch polybar
-#Themes will not show some things by default (battery, temp)
-#You will have to edit modules.ini and bars.ini for respective theme.
-exec_always --no-startup-id /home/juno/.config/polybar/launch.sh --cuts
-
-#picom
-#Picom is what gives the transparent look of windows.
-#Settings for Picom found in .config/picom
-exec_always picom
-
-#rofi
-bindsym $mod+d exec rofi -show run
+#I use picom for the window effects
+exec_always --no-startup-id picom --experimental-backend --config ~/.config/picom.conf
