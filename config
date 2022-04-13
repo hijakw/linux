@@ -216,5 +216,5 @@ bindsym $mod+b exec firefox
 exec_always feh --bg-fill $HOME/Pictures/Walls/1.jpg
 
 #I use picom-git for the window effects
-exec_always --no-startup-id picom --experimental-backend --config ~/.config/picom.conf
-
+bindsym $mod+p exec --no-startup-id picom --experimental-backend --config ~/.config/picom.conf
+bindsym $mod+Shift+p exec $HOME/Documents/Scripts/picom_toggle.sh
